@@ -68,8 +68,8 @@ if [[ $input == "Y" || $input == "y" ]]; then
       else
         if [[ $inputfs == "f2fs" ; then
            mkfs_f2fs /dev/sda1 --yes
-      fi
- else
+        fi
+    else
         echo
 
         sleep 2
