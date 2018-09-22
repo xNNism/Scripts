@@ -66,7 +66,7 @@ if [[ $input == "Y" || $input == "y" ]]; then
            mkfs_ext4 /dev/sda1 --yes
         fi
       else
-        if [[ $input_fs == "f2fs" ; then
+        if [[ $input_fs == "f2fs" ]]; then
            mkfs_f2fs /dev/sda1 --yes
         fi
     else
