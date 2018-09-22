@@ -44,10 +44,6 @@ if [[ $input == "Y" || $input == "y" ]]; then
         echo "# Installing fdisk & blkid..."
         sleep 2
         opkg install blkid fdisk
- else
-        echo
-        echo "# only 4MB? sucks!... :)"
-        sleep 2
 fi
 
 echo
@@ -62,16 +58,14 @@ read input
 if [[ $input == "Y" || $input == "y" ]]; then
   echo
         echo "# making new fs..."
-        if [[ $input_fs == "ext4" ; then
-           mkfs_ext4 /dev/sda1 --yes
+        if [[ $input_fs == "ext4" ]]; then
+           mkfs_ext4 /dev/sda1
         fi
       else
         if [[ $input_fs == "f2fs" ]]; then
-           mkfs_f2fs /dev/sda1 --yes
-        fi
+           mkfs_f2fs /dev/sda1
 fi
 
-sleep 2
 echo
 echo "###############################"
 echo "##     show block info       ##"
@@ -80,18 +74,15 @@ echo
 
 block info
 
-echo "# Did your device showed up? [Y,n]"
-echo "/////////////////////////////////"
-read input
-if [[ $input == "Y" || $input == "y" ]]; then
-        echo "# Transferring content to new /overlay"
-        echo
+if [ -e "/dev/sda*" || -e "/dev/sdb*" ]; then
+	echo "# USB/MMC found, transferring content to new /overlay"
+	echo
         sleep 1
         mount /dev/sda1 /mnt ; tar -C /overlay -cvf - . | tar -C /mnt -xf - ; umount /mnt
         sleep2
  else
         echo
-        echo "# Maybe forgot to plug in?"
+        echo "# Device not showed up, maybe forgot to plug in?"
         sleep 1
         echo
         echo "# Exiting now!"
@@ -99,6 +90,26 @@ if [[ $input == "Y" || $input == "y" ]]; then
   exit
 
 fi
+
+# echo "# Did your device showed up? [Y,n]"
+# echo "/////////////////////////////////"
+# read input
+# if [[ $input == "Y" || $input == "y" ]]; then
+#        echo "# Transferring content to new /overlay"
+#        echo
+#        sleep 1
+#        mount /dev/sda1 /mnt ; tar -C /overlay -cvf - . | tar -C /mnt -xf - ; umount /mnt
+#        sleep2
+# else
+#        echo
+#        echo "# Device not showed up, maybe forgot to plug in?"
+#        sleep 1
+#        echo
+#        echo "# Exiting now!"
+#        sleep 3
+#  exit
+#
+# fi
 
 echo
 echo "# Generate fstab automatically "
@@ -112,11 +123,12 @@ block detect > /etc/config/fstab; \
    sleep 2
 
    echo
-   echo "# Fstab generated...If mounting fails after reboot, "
-   echo "# review the configuration in "/ezc/config/fstab ""
-   echo "/////////////////////////////////////////////////////"
+   echo " ####################  Script finished, Fstab generated!  ####################### "
+   echo " # If mounting fails after reboot, review the configuration in "/etc/config/fstab ""
+   echo " //////////////////////////////////////////////////////////////////////////////// "
    echo
    sleep 4
    echo " exiting now... "
-   sleep 1
+   sleep 2
    exit
+
