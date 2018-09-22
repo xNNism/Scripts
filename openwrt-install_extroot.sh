@@ -52,10 +52,10 @@ fi
 
 echo
 echo "###############################"
-echo "##    format filesystem      ##"
+echo "##    Format filesystem      ##"
 echo "###############################"
 echo
-echo "Format the filesystem on /dev/sda1 ?"
+echo "Format the filesystem on /dev/sda1 ? [Y,n] "
 echo "////////////////////////////////////"
 echo
 read input
@@ -63,10 +63,11 @@ if [[ $input == "Y" || $input == "y" ]]; then
   echo
         echo "# making new fs..."
         if [[ $inputfs == "ext4" ; then
-        mkfs_ext4 /dev/sda1 --yes
+           mkfs_ext4 /dev/sda1 --yes
+        fi
       else
         if [[ $inputfs == "f2fs" ; then
-        mkfs_f2fs /dev/sda1 --yes
+           mkfs_f2fs /dev/sda1 --yes
       fi
  else
         echo
