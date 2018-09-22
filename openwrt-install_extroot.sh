@@ -62,11 +62,11 @@ read input
 if [[ $input == "Y" || $input == "y" ]]; then
   echo
         echo "# making new fs..."
-        if [[ $inputfs == "ext4" ; then
+        if [[ $input_fs == "ext4" ; then
            mkfs_ext4 /dev/sda1 --yes
         fi
       else
-        if [[ $inputfs == "f2fs" ; then
+        if [[ $input_fs == "f2fs" ; then
            mkfs_f2fs /dev/sda1 --yes
         fi
     else
