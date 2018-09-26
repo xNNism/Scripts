@@ -57,13 +57,14 @@ echo
 read input
 if [[ $input == "Y" || $input == "y" ]]; then
   echo
-        echo "# making new fs..."
+        echo "# formatting sda1..."
         if [[ $input_fs == "ext4" ]]; then
-           mkfs_ext4 /dev/sda1
+           mkfs.ext4 /dev/sda1
         fi
-      else
+     
         if [[ $input_fs == "f2fs" ]]; then
-           mkfs_f2fs /dev/sda1
+           mkfs.f2fs /dev/sda1
+  fi
 fi
 
 echo
