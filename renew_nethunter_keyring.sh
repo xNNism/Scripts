@@ -17,31 +17,31 @@ sleep 2
 dpkg -i kali-archive-keyring_2018.1_all.deb
 
 echo ""
-echo -n "${ylw} done! do you want to apt-get update && apt-get upgrade? ${txtrst}"
+echo -n "${ylw} done! do you want to apt-get update && apt-get upgrade? (can take a long time! use only if connected to unmetered connection!) ${txtrst}"
+
 read answer
 
 if [ "$answer" != "${answer#[Yy]}" ] ;then
   apt-get update && apt-get upgrade
 
 else
-	echo -n "${ylw} ..finished ${txtrst}"
+	echo -n "${ylw} finished update and upgrade! ${txtrst}"
 	exit
 fi
 
-echo ""
-echo "${ylw} metapackages to install:.${txtrst}"
-echo ""
-sleep 2
+echo -e "Choose the Nethunter Metapackage you want to Install:"
+echo
 
-(kali-linux
-kali-linux-all
-kali-linux-forensic
-kali-linux-full
-kali-linux-gpu
-kali-linux-pwtools
-kali-linux-rfid
-kali-linux-sdr
-kali-linux-top10
-kali-linux-voip
-kali-linux-web
-kali-linux-wireless
+  LIST_METAPKG=$(echo -e "$(cat nethunter_metapackages)")
+
+  echo "LIST_METAPKG"
+  echo
+  echo "Select a metapackage"
+
+  echo -n "Enter metapackage and press [ENTER]: "
+  read metapackage
+  echo
+
+  apt-get install $metapackage
+
+fi
