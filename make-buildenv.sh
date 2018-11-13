@@ -6,7 +6,7 @@
 #																	   #
 ########################################################################
 
-AURHELPER="yaourt"
+AURHELPER="trizen"
 
 sudo pacman -Sy
 sudo pacman -Syu
@@ -55,3 +55,5 @@ time \
 $AURHELPER -S --needed --noconfirm \
 bcc \
 sdcc \
+aosp-devel \
+lineageos-devel \
