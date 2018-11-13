@@ -1,2 +1,2 @@
 # Scripts
-lazymens scripts for everything
+lazymens shell/bash scripts
