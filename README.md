@@ -1,2 +1,2 @@
 # Scripts
-lazymens shell/bash scripts
+shell/bash dump
