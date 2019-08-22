@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
