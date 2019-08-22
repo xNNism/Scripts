@@ -1,17 +1,16 @@
 #!/bin/sh
 
 ########################################################################
-#																	   #
-# Script to install packages to establish a buildsystem on Archlinux   #
-#																	   #
+#											                                                 #						   
+# Install needed packages to build OpenWrt.                            #
+#																	                                     #
 ########################################################################
 
 AURHELPER="trizen"
 
-sudo pacman -Sy
-sudo pacman -Syu
-
-sudo pacman -S --needed \
+sudo pacman -Syy
+sudo pacman -Syuu
+sudo pacman -S --needed --noconfirm \
 asciidoc \
 bash \
 bc \
@@ -52,8 +51,8 @@ subversion \
 findutils \
 time \
 
-$AURHELPER -S --needed --noconfirm \
+$AURHELPER -S --needed --noconfirm  \
 bcc \
 sdcc \
 aosp-devel \
-lineageos-devel \
+lineageos-devel
