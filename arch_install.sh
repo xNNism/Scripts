@@ -5,7 +5,7 @@
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
-REPO_URL="https://raw.githubusercontent.com/xNNism/x0c-r3po/master/"
+REPO_URL="https://raw.githubusercontent.com/xNNism/x0C-r3po/master/"
 
 ### Get infomation from user ###
 hostname=$(dialog --stdout --inputbox "Enter hostname" 0 0) || exit 1
@@ -64,17 +64,17 @@ mount "${part_boot}" /mnt/boot
 
 ### Install and configure the basic system ###
 cat >>/etc/pacman.conf <<EOF
-[mdaffin]
+[x0C-r3po]
 SigLevel = Optional TrustAll
 Server = $REPO_URL
 EOF
 
-pacstrap /mnt mdaffin-desktop
+pacstrap /mnt x0C
 genfstab -t PARTUUID /mnt >> /mnt/etc/fstab
 echo "${hostname}" > /mnt/etc/hostname
 
 cat >>/mnt/etc/pacman.conf <<EOF
-[mdaffin]
+[x0C-r3po]
 SigLevel = Optional TrustAll
 Server = $REPO_URL
 EOF
